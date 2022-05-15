@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Надежда\Desktop\PP-master\PP\obj\Debug\
+C:\Users\Надежда\source\repos\PP\PP\obj\Debug\
 PP
 none
 false
 DEBUG;TRACE
-C:\Users\Надежда\Desktop\PP-master\PP\App.xaml
-6-643635407
+C:\Users\Надежда\source\repos\PP\PP\App.xaml
+7-1434629105
 2-1957146511
-232069295065
-23-1070039016
-ImageWindow.xaml;MainWindow.xaml;PageAddDocument.xaml;PageAddOrganization.xaml;PageAuthorization.xaml;PageSearch.xaml;
+241140795127
+23-687575294
+ImageWindow.xaml;MainWindow.xaml;PageAddDocument.xaml;PageAddOrganization.xaml;PageAuthorization.xaml;PageOrganization.xaml;PageSearch.xaml;
 
-True
+False
 

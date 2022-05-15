@@ -80,7 +80,7 @@ namespace PP
                     dbpp.Organizations.Add(o);
                 }
                 dbpp.SaveChanges();
-                PageSearch p = new PageSearch(o.id);
+                PageOrganization p = new PageOrganization(o);
                 NavigationService.Navigate(p);
                 return;
             }
@@ -96,7 +96,7 @@ namespace PP
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            PageSearch p = new PageSearch(o.id);
+            PageSearch p = new PageSearch();
             NavigationService.Navigate(p);
         }
     }

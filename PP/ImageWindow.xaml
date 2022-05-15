@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxml"
         xmlns:local="clr-namespace:PP"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Страницы документа" Height="700" Width="500" Icon ="C:\Users\Надежда\Desktop\PP-master\PP\Resources\Архив.ico">
+        Title="Страницы документа" Height="700" Width="500" Icon ="C:\Users\Надежда\source\repos\PP\PP\Resources\Архив.ico">
     <Grid Background="Wheat">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"/>

@@ -7,10 +7,12 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      MinWidth="800"
-      MinHeight="450"
-      Title="Рабочее окно">
-    <Grid Background="Wheat">
+      Title="PageSearch">
+    <Grid  Background="Wheat">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Button x:Name="btnExit"
                 Margin="20"
                 Padding="0"
@@ -26,13 +28,13 @@
         <StackPanel Margin="20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    Panel.ZIndex="1">
+                    Panel.ZIndex="2">
             <Button x:Name="btnUsersList"
                     Padding="0"
                     HorizontalAlignment="Right"
                     Width="30"
                     Height="30"
-                    Visibility="Hidden"
+                    Visibility="Collapsed"
                     Click="btnUsersList_Click">
                 <materialDesign:PackIcon Kind="AccountGroup"
                                         Width="25"
@@ -44,7 +46,7 @@
                     Background="White"
                     CornerRadius="15"
                     Padding="10"
-                    Visibility="Hidden">
+                    Visibility="Collapsed">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="30" ShadowDepth="10" Color="#683ab8"></DropShadowEffect>
                 </Border.Effect>
@@ -92,21 +94,20 @@
                 </StackPanel>
             </Border>
         </StackPanel>
-        <StackPanel
-                   VerticalAlignment="Stretch" 
-                   HorizontalAlignment="Stretch">
+        <StackPanel VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch">
             <StackPanel
                 Orientation="Horizontal"
                 HorizontalAlignment="Center">
-                <TextBox x:Name="innTextBox"
-                         Margin="10"
+                <TextBox x:Name="searchOrgTextBox"
+                         Margin="15"
                          Width="200"
                          FontSize="14"
-                         PreviewTextInput="innTextBox_PreviewTextInput"
-                         materialDesign:HintAssist.Hint="ИНН"
+                         FontWeight="Black"
+                         materialDesign:HintAssist.Hint="Поиск"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         MaxLength="10"
-                         materialDesign:TransitionAssist.DisableTransitions="True" Cursor="Arrow" TextChanged="innTextBox_TextChanged"/>
+                         materialDesign:TransitionAssist.DisableTransitions="True"
+                         TextChanged="searchOrgTextBox_TextChanged"/>
                 <Button x:Name="btnAddOrganization"
                         Width="30"
                         Height="30"
@@ -126,79 +127,26 @@
                     <materialDesign:PackIcon Kind="Pencil"/>
                 </Button>
             </StackPanel>
-            <GroupBox
-                Header="Об организации"
-                FontSize="16"
-                FontWeight="Bold"
-                Margin="20 10">
-                <TextBlock x:Name="infoOrgTextBlock"
-                           Margin="10"/>
-            </GroupBox>
-            <Button x:Name="btnAddDocument"
-                    Width="30"
-                    Height="30"
-                    Padding="0"
-                    Margin="20 10"
-                    IsEnabled="False"
-                    HorizontalAlignment="Left"
-                    Click="btnAddDocument_Click">
-                <materialDesign:PackIcon Kind="Plus"
-                                         Width="30"
-                                         Height="30"/>
-            </Button>
-            <GroupBox
-                Header="Документы"
-                FontWeight="Bold"
-                FontSize="16"
-                Margin="20 10">
-                <ListBox x:Name="listBoxDoc"
-                         Margin="10"
-                         Width="760"
-                         ItemsSource="{Binding Page}">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <ListBoxItem x:Name="documentItem"
-                                         HorizontalAlignment="Left">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Image Source="{Binding photo}"
-                                           Grid.Row="0"
-                                           Width="210"
-                                           Height="297"
-                                           MouseDown="Image_MouseDown"/>
-                                    <StackPanel Grid.Row="1">
-                                        <StackPanel Orientation="Vertical"
-                                                    HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding type}"
-                                                       HorizontalAlignment="Center"/>
-                                            <TextBlock Text="{Binding date, StringFormat= dd.MM.yyyy}"
-                                                       HorizontalAlignment="Center"/>
-                                        </StackPanel>
-                                        <Button x:Name="editDocBtn"
-                                                Grid.Row="1"
-                                                Width="20"
-                                                Height="20"
-                                                Padding="0"
-                                                Margin="5"
-                                                HorizontalAlignment="Right"
-                                                Click="editDocBtn_Click">
-                                            <materialDesign:PackIcon Kind="Pencil"/>
-                                        </Button>
-                                    </StackPanel>
-                                </Grid>
-                            </ListBoxItem>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </GroupBox>
+            <DataGrid x:Name="OrganizationDataGrid"
+                      Background="Wheat"
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True" 
+                      SelectionMode="Single" SelectionChanged="OrganizationDataGrid_SelectionChanged"
+                      FontSize="14">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                        <Setter Property="Background" Value="Wheat"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ИНН" Binding="{Binding id}" />
+                    <DataGridTextColumn Header="ОПФ" Binding="{Binding TypeOPF.type}" />
+                    <DataGridTextColumn Header="Название" Binding="{Binding name}" />
+                    <DataGridTextColumn Header="Директор" Binding="{Binding director}" />
+                    <DataGridTextColumn Header="Адрес" Binding="{Binding address}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Page>

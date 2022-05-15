@@ -8,7 +8,7 @@
         Title="Архив"
         MinHeight="475"
         MinWidth="900"
-        Icon ="C:\Users\Надежда\Desktop\PP-master\PP\Resources\Архив.ico">
+        Icon ="C:\Users\Надежда\source\repos\PP\PP\Resources\Архив.ico">
     <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Hidden">
         <Frame x:Name="MainFrame"

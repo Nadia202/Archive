@@ -52,7 +52,7 @@ namespace PP
                 }
                 if (user.password == password)
                 {
-                    PageSearch p = new PageSearch(0);
+                    PageSearch p = new PageSearch();
                     NavigationService.Navigate(p);
                 }
                 if (user.password != password)

@@ -20,10 +20,10 @@ namespace PP
     public partial class PageAddDocument : Page
     {
         DBPP dbpp;
-        long idOrg;
+        Organizations organization;
         Documents d;
         bool b;
-        public PageAddDocument(DBPP dbpp, long idOrg, Documents d, bool b)
+        public PageAddDocument(DBPP dbpp, Organizations organization, Documents d, bool b)
         {
             InitializeComponent();
             this.dbpp = dbpp;
@@ -40,7 +40,7 @@ namespace PP
                 typeComboBox.Items.Add(type.Skip(i).First().type);
             }
             this.d = d;
-            this.idOrg = idOrg;
+            this.organization = organization;
             this.b = b;
             this.DataContext = d;
             if (b)
@@ -59,7 +59,7 @@ namespace PP
 
         private void btnExit_Click_1(object sender, RoutedEventArgs e)
         {
-            PageSearch p = new PageSearch(idOrg);
+            PageOrganization p = new PageOrganization(organization);
             NavigationService.Navigate(p);
         }
 
@@ -114,7 +114,7 @@ namespace PP
             else
                 MaterialDesignThemes.Wpf.HintAssist.SetHelperText(typeComboBox, "");
 
-            d.organization = idOrg;
+            d.organization = organization.id;
 
             var type = dbpp.TypeDocument.Join(dbpp.DocumentPosition.Where(pos => pos.position == PageAuthorization.user.position),
                 t => t.id,
